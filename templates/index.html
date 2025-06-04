@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to UCDS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the United Communist Democratic States</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/about">About UCDS</a></li>
+                <li><a href="/government">Government</a></li>
+                <li><a href="/citizenship">Citizenship</a></li>
+                <li><a href="/symbols">Symbols</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/login">Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <p>This is the official website for the United Communist Democratic States micronation.</p>
+        <p>Explore our history and learn more about our journey.</p>
+        
+        <p>This is the official website for the United Communist Democratic States micronation.</p>
+        <p>Explore our history and learn more about our journey.</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 United Communist Democratic States</p>
+    </footer>
+</body>
+</html>

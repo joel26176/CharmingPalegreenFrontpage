@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - UCDS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel - United Communist Democratic States</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin">Admin Panel</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <h2>Visitor IP Logs</h2>
+        {% if visitor_ips %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>IP Address</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in visitor_ips %}
+                <tr>
+                    <td>{{ log.timestamp }}</td>
+                    <td>{{ log.ip }}</td>
+                    <td>
+                        {% if log.flagged %}
+                            <span style="color: red; font-weight: bold;">FLAGGED</span>
+                        {% else %}
+                            Normal
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="{{ url_for('admin_panel') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="ip_address" value="{{ log.ip }}">
+                            {% if not log.flagged %}
+                                <input type="hidden" name="action" value="flag">
+                                <button type="submit" class="button-flag">Flag</button>
+                            {% else %}
+                                <input type="hidden" name="action" value="whitelist">
+                                <button type="submit" class="button-whitelist">Whitelist</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No visitor IP logs available.</p>
+        {% endif %}
+
+        <hr>
+
+        <h2>Citizenship Applications</h2>
+
+        <h3>Pending Applications ({{ pending_applications|length }})</h3>
+        {% if pending_applications %}
+            {% for app in pending_applications %}
+            <div class="application-card pending">
+                <h4>Application ID: {{ app.id }}</h4>
+                <p><strong>Applicant:</strong> {{ app.full_name }}</p>
+                <p><strong>Email:</strong> {{ app.email }}</p>
+                <p><strong>Discord Username:</strong> {{ app.discord_username if app.discord_username else 'N/A' }}</p>
+                <p><strong>Applicant IP:</strong>
+                    {% if app.applicant_ip %}
+                        {{ app.applicant_ip }}
+                        <form action="{{ url_for('admin_panel') }}" method="post" style="display:inline; margin-left: 10px;">
+                            <input type="hidden" name="ip_address" value="{{ app.applicant_ip }}">
+                            <input type="hidden" name="action" value="flag">
+                            <button type="submit" class="button-flag" title="Flag this IP">Flag IP</button>
+                        </form>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </p>
+                <p><strong>Submitted:</strong> {{ app.timestamp }}</p>
+                <p><strong>Reason:</strong> {{ app.reason }}</p>
+                <div class="application-actions">
+                    <form action="{{ url_for('process_application', app_id=app.id, action='approve') }}" method="post" style="display:inline;">
+                        <button type="submit" class="button-approve">Approve</button>
+                    </form>
+                    <form action="{{ url_for('process_application', app_id=app.id, action='deny') }}" method="post" style="display:inline;">
+                        <button type="submit" class="button-deny">Deny</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No pending applications at this time.</p>
+        {% endif %}
+
+        <h3>Approved Applications ({{ approved_applications|length }})</h3>
+        {% if approved_applications %}
+            {% for app in approved_applications %}
+            <div class="application-card approved">
+                <h4>Application ID: {{ app.id }}</h4>
+                <p><strong>Applicant:</strong> {{ app.full_name }}</p>
+                <p><strong>Email:</strong> {{ app.email }}</p>
+                <p><strong>Discord Username:</strong> {{ app.discord_username if app.discord_username else 'N/A' }}</p>
+                <p><strong>Applicant IP:</strong>
+                    {% if app.applicant_ip %}
+                        {{ app.applicant_ip }}
+                        <form action="{{ url_for('admin_panel') }}" method="post" style="display:inline; margin-left: 10px;">
+                            <input type="hidden" name="ip_address" value="{{ app.applicant_ip }}">
+                            <input type="hidden" name="action" value="flag">
+                            <button type="submit" class="button-flag" title="Flag this IP">Flag IP</button>
+                        </form>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </p>
+                <p><strong>Submitted:</strong> {{ app.timestamp }}</p>
+                <p><strong>Reason:</strong> {{ app.reason }}</p>
+                <p><strong>Status:</strong> <span class="status-approved">Approved</span></p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No approved applications yet.</p>
+        {% endif %}
+
+        <h3>Denied Applications ({{ denied_applications|length }})</h3>
+        {% if denied_applications %}
+            {% for app in denied_applications %}
+            <div class="application-card denied">
+                <h4>Application ID: {{ app.id }}</h4>
+                <p><strong>Applicant:</strong> {{ app.full_name }}</p>
+                <p><strong>Email:</strong> {{ app.email }}</p>
+                <p><strong>Discord Username:</strong> {{ app.discord_username if app.discord_username else 'N/A' }}</p>
+                <p><strong>Applicant IP:</strong>
+                    {% if app.applicant_ip %}
+                        {{ app.applicant_ip }}
+                        <form action="{{ url_for('admin_panel') }}" method="post" style="display:inline; margin-left: 10px;">
+                            <input type="hidden" name="ip_address" value="{{ app.applicant_ip }}">
+                            <input type="hidden" name="action" value="flag">
+                            <button type="submit" class="button-flag" title="Flag this IP">Flag IP</button>
+                        </form>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </p>
+                <p><strong>Submitted:</strong> {{ app.timestamp }}</p>
+                <p><strong>Reason:</strong> {{ app.reason }}</p>
+                <p><strong>Status:</strong> <span class="status-denied">Denied</span></p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No denied applications yet.</p>
+        {% endif %}
+
+    </main>
+    <footer>
+        <p>&copy; 2024 United Communist Democratic States</p>
+    </footer>
+</body>
+</html>

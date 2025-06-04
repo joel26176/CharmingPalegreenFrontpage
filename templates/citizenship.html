@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCDS Citizenship</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Citizenship in the United Communist Democratic States</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/about">About UCDS</a></li>
+                <li><a href="/government">Government</a></li>
+                <li><a href="/citizenship">Citizenship</a></li>
+                <li><a href="/symbols">Symbols</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/login">Admin Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Becoming a Citizen of UCDS</h2>
+        <p>The United Communist Democratic States welcomes individuals who share our vision for a harmonious and prosperous society. Citizenship in UCDS is a privilege that comes with both rights and responsibilities, all designed to foster a strong, unified, and progressive nation.</p>
+
+        <h3>Eligibility and Application</h3>
+        <p>To inquire about citizenship and learn about the application process, please use the form below. General eligibility may include:</p>
+        <ul>
+            <li>Agreement with the core principles of UCDS.</li>
+            <li>Commitment to active participation in communal life and democratic processes.</li>
+            <li>A willingness to contribute positively to the nation's development.</li>
+        </ul>
+
+        <hr>
+
+        <h2>Apply for Citizenship</h2>
+        {% if message %}
+            <p class="status-message {% if 'success' in message|lower %}success{% else %}error-message{% endif %}">{{ message }}</p>
+        {% endif %}
+        <form action="/citizenship" method="post" class="application-form">
+            <label for="full_name">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" required><br>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="discord_username">Discord Username (Optional):</label>
+            <input type="text" id="discord_username" name="discord_username"><br>
+
+            <label for="reason">Why do you wish to join the UCDS?</label>
+            <textarea id="reason" name="reason" rows="5" required></textarea><br>
+
+            <label for="agree_terms">
+                <input type="checkbox" id="agree_terms" name="agree_terms" required>
+                I agree to uphold the principles and laws of the UCDS.
+            </label><br>
+
+            <input type="submit" value="Submit Application">
+        </form>
+
+        <hr>
+
+        <h3>Rights of a UCDS Citizen</h3>
+        <p>As a citizen of the United Communist Democratic States, you are entitled to:</p>
+        <ul>
+            <li>Participate in democratic elections and referendums.</li>
+            <li>Hold public office within the government.</li>
+            <li>Access communal resources and national services.</li>
+            <li>Enjoy freedom of speech, assembly, and conscience, provided they align with communal harmony.</li>
+            <li>Protection under UCDS law and the national charter.</li>
+        </ul>
+
+        <h3>Responsibilities of a UCDS Citizen</h3>
+        <p>With rights come responsibilities, which are vital for the continued success of our micronation:</p>
+        <ul>
+            <li>Uphold the principles and laws of the UCDS.</li>
+            <li>Contribute actively to the community and national projects.</li>
+            <li>Participate in democratic processes and civic duties.</li>
+            <li>Respect the diversity and communal spirit of all citizens.</li>
+            <li>Defend the nation's values and integrity.</li>
+        </ul>
+
+        <h2>Oath of Allegiance</h2>
+        <p>Upon becoming a citizen, individuals are expected to affirm their commitment to the United Communist Democratic States through a symbolic oath:</p>
+        <blockquote>
+            "I, [Your Name], solemnly pledge my allegiance to the United Communist Democratic States, to its principles of collective prosperity and democratic liberty, and to its people. I vow to uphold its laws, contribute to its progress, and defend its ideals, for the common good and the advancement of our shared future."
+        </blockquote>
+    </main>
+    <footer>
+        <p>&copy; 2024 United Communist Democratic States</p>
+    </footer>
+</body>
+</html>

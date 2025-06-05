@@ -1,238 +1,281 @@
+/* General Body and Container Styles */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* Dark background, almost black */
+    color: #f0f0f0; /* Light text for contrast */
+    line-height: 1.6;
 }
 
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Header Styles */
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem 0;
-  text-align: center;
+    background: #cc0000; /* Strong Red */
+    color: #ffffff;
+    padding: 10px 20px; /* Reduced padding slightly */
+    min-height: 70px;
+    border-bottom: #ffcc00 3px solid; /* Gold accent border */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space out left and right content */
+    align-items: center; /* Vertically center items */
+    position: relative; /* For z-index context */
+    z-index: 1002; /* Ensure header is above everything */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
 }
 
 header h1 {
-  margin: 0;
+    margin: 0 20px 0 0; /* Adjust margin for spacing */
+    font-size: 2.2em; /* Slightly smaller for better fit */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap; /* Prevent wrapping */
 }
 
-nav ul {
-  padding: 0;
-  list-style: none;
+/* Menu Toggle (Hamburger Icon) */
+.menu-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 5px 10px;
+    display: block; /* Always show the hamburger icon */
+    z-index: 1001; /* Ensure it's above main-nav but below header itself */
 }
 
-nav ul li {
-  display: inline;
-  margin-right: 20px;
+/* Main Navigation (Dropdown) */
+.main-nav {
+    display: block; /* Change from 'none' to 'block' - we hide it with transform initially */
+    position: fixed; /* Use fixed positioning to cover the whole viewport */
+    top: 0;
+    left: 0;
+    width: 250px; /* Or whatever width you prefer */
+    height: 100vh; /* Full height of the viewport */
+    background-color: #333333; /* Dark background for dropdown */
+    padding-top: 80px; /* Space for the header content that stays */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    z-index: 999; /* Ensure it's above main content but below toggle/header */
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%); /* Start off-screen to the left */
 }
 
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
+.main-nav.active {
+    transform: translateX(0); /* Slide in when 'active' class is present */
 }
 
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav ul li {
+    border-bottom: 1px solid #444444; /* Separator for menu items */
+}
+
+.main-nav ul li:last-child {
+    border-bottom: none;
+}
+
+.main-nav ul li a {
+    display: block; /* Make the whole list item clickable */
+    padding: 15px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    background-color: #555555; /* Darker background on hover */
+    color: #ffcc00; /* Gold text on hover */
+}
+
+/* Admin Login (Right side) */
+.header-right nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.header-right nav ul li {
+    display: inline-block; /* Keep it inline for the right side */
+    padding: 0 10px;
+}
+
+.header-right nav a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.header-right nav a:hover {
+    color: #ffcc00;
+}
+
+
+/* Main Content Styles */
 main {
-  padding: 20px;
-  max-width: 960px;
-  margin: auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+    padding: 20px;
+    background-color: #333333; /* Dark gray for content sections */
+    margin: 20px auto;
+    width: 80%;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    color: #f0f0f0; /* Light text */
+    position: relative; /* For z-index context if needed */
+    z-index: 1; /* Ensure main content is behind the dropdown when open */
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: #fff;
-  margin-top: 20px;
+main h2, main h3, main h4 {
+    color: #ffcc00; /* Gold for headings */
+    border-bottom: 1px solid #666666;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-table, th, td {
-  border: 1px solid #ddd;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-.error-message {
-  color: red;
-  font-weight: bold;
-  margin-top: 10px;
-}
-/* Additional styles for new content sections */
-.symbol-description {
-    background-color: #eef;
-    padding: 15px;
-    border-left: 5px solid #0056b3;
-    margin-bottom: 20px;
-}
-
-.symbol-description h3 {
-    margin-top: 0;
-    color: #0056b3;
-}
-
-.symbol-description p {
+p {
     margin-bottom: 10px;
 }
 
-blockquote {
-    background: #f9f9f9;
-    border-left: 10px solid #ccc;
-    margin: 1.5em 10px;
-    padding: 0.5em 10px;
-    quotes: "\201C""\201D""\2018""\2019";
-}
-blockquote:before {
-    color: #ccc;
-    content: open-quote;
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
-}
-blockquote p {
-    display: inline;
-}
-
-address {
-    font-style: normal;
-    margin-top: 15px;
-    padding: 10px;
-    border: 1px dashed #ccc;
-    background-color: #fcfcfc;
-}
-/* Styling for citizenship application form */
-.application-form {
-    background-color: #f0f0f0;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin: 20px auto;
-}
-
+/* Forms */
 .application-form label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
+    color: #ccc;
 }
 
 .application-form input[type="text"],
 .application-form input[type="email"],
 .application-form textarea {
-    width: calc(100% - 22px); /* Adjust for padding/border */
+    width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #666666;
+    background-color: #222222; /* Darker input background */
+    color: #ffffff; /* White text in inputs */
     border-radius: 5px;
-    font-size: 1rem;
-}
-
-.application-form textarea {
-    resize: vertical; /* Allow vertical resizing */
-}
-
-.application-form input[type="checkbox"] {
-    margin-right: 8px;
 }
 
 .application-form input[type="submit"] {
-    background-color: #007bff;
+    background-color: #cc0000; /* Red submit button */
     color: white;
-    padding: 12px 25px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1em;
     transition: background-color 0.3s ease;
 }
 
 .application-form input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #ff3333; /* Lighter red on hover */
 }
 
-.status-message {
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    text-align: center;
-    font-weight: bold;
+input[type="checkbox"] {
+    margin-right: 10px;
 }
 
-.status-message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.error-message { /* Already exists, but ensure it's styled for consistency */
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-/* Styling for flash messages */
+/* Flash Messages */
 .flashes {
     list-style: none;
-    padding: 10px 20px;
-    margin: 20px 0;
-    border-radius: 5px;
+    padding: 10px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 1200px;
+    border-radius: 8px;
 }
 
 .flashes li {
-    margin-bottom: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
     font-weight: bold;
 }
 
 .flashes .success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: #28a745; /* Green */
+    color: white;
 }
 
 .flashes .error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: #dc3545; /* Red */
+    color: white;
 }
 
 .flashes .info {
-    background-color: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
+    background-color: #17a2b8; /* Blue */
+    color: white;
 }
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a; /* Dark background */
+    color: #aaaaaa;
+    margin-top: 20px;
+    border-top: #ffcc00 3px solid; /* Gold accent border */
+}
+
+/* Table Styles (for admin panel) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #444444; /* Darker border */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    color: #f0f0f0;
+}
+
+th {
+    background-color: #333333; /* Match main content background */
+    color: #ffcc00; /* Gold text for table headers */
+}
+
 /* Styling for Admin Panel - Citizenship Applications */
 .application-card {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    background-color: #2a2a2a; /* Slightly lighter dark gray for cards */
+    border: 1px solid #444444;
     border-radius: 8px;
     padding: 15px 20px;
     margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
 .application-card h4 {
     margin-top: 0;
-    color: #333;
+    color: #ffcc00; /* Gold */
     font-size: 1.1em;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #444444;
     padding-bottom: 8px;
     margin-bottom: 10px;
 }
@@ -240,24 +283,25 @@ address {
 .application-card p {
     margin-bottom: 5px;
     line-height: 1.5;
+    color: #e0e0e0;
 }
 
 .application-card.pending {
-    border-left: 5px solid #ffc107; /* Yellow border for pending */
+    border-left: 5px solid #ffcc00; /* Gold border for pending */
 }
 
 .application-card.approved {
-    border-left: 5px solid #28a745; /* Green border for approved */
+    border-left: 5px solid #009900; /* Darker Green for approved */
 }
 
 .application-card.denied {
-    border-left: 5px solid #dc3545; /* Red border for denied */
+    border-left: 5px solid #990000; /* Darker Red for denied */
 }
 
 .application-actions {
     margin-top: 15px;
     padding-top: 10px;
-    border-top: 1px dashed #eee;
+    border-top: 1px dashed #555555;
 }
 
 .application-actions button {
@@ -271,35 +315,36 @@ address {
 }
 
 .button-approve {
-    background-color: #28a745; /* Green */
+    background-color: #009900; /* Dark Green */
     color: white;
 }
 
 .button-approve:hover {
-    background-color: #218838;
+    background-color: #007700;
 }
 
 .button-deny {
-    background-color: #dc3545; /* Red */
+    background-color: #990000; /* Dark Red */
     color: white;
 }
 
 .button-deny:hover {
-    background-color: #c82333;
+    background-color: #770000;
 }
 
 .status-approved {
     font-weight: bold;
-    color: #28a745;
+    color: #00ff00; /* Bright Green */
 }
 
 .status-denied {
     font-weight: bold;
-    color: #dc3545;
+    color: #ff0000; /* Bright Red */
 }
+
 /* Styling for IP Flag/Whitelist buttons */
 .button-flag {
-    background-color: #ffc107; /* Yellow */
+    background-color: #ffcc00; /* Gold */
     color: #333;
     padding: 6px 12px;
     border: none;
@@ -310,11 +355,11 @@ address {
 }
 
 .button-flag:hover {
-    background-color: #e0a800;
+    background-color: #e0b300;
 }
 
 .button-whitelist {
-    background-color: #17a2b8; /* Cyan/Blue */
+    background-color: #666666; /* Darker gray for whitelist */
     color: white;
     padding: 6px 12px;
     border: none;
@@ -325,5 +370,5 @@ address {
 }
 
 .button-whitelist:hover {
-    background-color: #138496;
+    background-color: #555555;
 }

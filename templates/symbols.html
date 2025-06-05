@@ -3,75 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UCDS National Symbols</title>
+    <title>Symbols - UCDS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
-        <h1>National Symbols of the United Communist Democratic States</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/history">History</a></li>
-                <li><a href="/about">About UCDS</a></li>
-                <li><a href="/government">Government</a></li>
-                <li><a href="/citizenship">Citizenship</a></li>
-                <li><a href="/symbols">Symbols</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/login">Admin Login</a></li>
-            </ul>
-        </nav>
+        <div class="header-left">
+            <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/history">History</a></li>
+                    <li><a href="/about">About UCDS</a></li>
+                    <li><a href="/government">Government</a></li>
+                    <li><a href="/citizenship">Citizenship</a></li>
+                    <li><a href="/symbols">Symbols</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <h1>United Communist Democratic States</h1>
+            <nav>
+                <ul>
+                    <li><a href="/login">Admin Login</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
-        <h2>The National Flag</h2>
-        <p>The Flag of the United Communist Democratic States is a powerful emblem of our nation's identity and values. While an image is pending, its design symbolizes our commitment to unity, progress, and the democratic will of the people.</p>
-        <div class="symbol-description">
-            <p><strong>[Image placeholder for the flag - you can upload an image to your `static` folder and link it here later]</strong></p>
-            <p>The flag's colors and design elements each carry profound meaning:</p>
-            <ul>
-                <li><strong>Red:</strong> Represents the collective struggle for progress, unity, and the shared sacrifice of our people.</li>
-                <li><strong>Gold/Yellow:</strong> Symbolizes prosperity, enlightenment, and the rich potential of our nation.</li>
-                <li><strong>[Other elements, e.g., a specific symbol]:</strong> [Explain the meaning of any central emblem or stars, e.g., "A stylized gear represents industry and cooperation," or "A single star signifies national unity and aspiration."]</li>
-            </ul>
-        </div>
+        <h2>National Symbols of the UCDS</h2>
+        <p>The symbols of the United Communist Democratic States encapsulate our history, values, and aspirations for a brighter future. They are emblems of unity, labor, and the collective will of the people.</p>
 
-        <h2>The National Anthem</h2>
-        <p>The anthem of the United Communist Democratic States, "Ode to the People's Will," inspires unity and reminds us of our shared journey and aspirations. Its stirring lyrics reflect our commitment to democratic principles and collective well-being.</p>
-        <div class="symbol-description">
-            <h3>"Ode to the People's Will"</h3>
-            <p>
-                (Verse 1)<br>
-                From humble start, our vision clear and bright,<br>
-                A people's voice, uniting in the light.<br>
-                For common good, our future we define,<br>
-                In UCDS, true freedom's star shall shine.
-            </p>
-            <p>
-                (Chorus)<br>
-                Ode to the People's Will, our anthem strong and free,<br>
-                For unity and liberty, UCDS for thee!<br>
-                Through struggle, growth, and wisdom's steady hand,<br>
-                We build our future, strong across the land!
-            </p>
-            <p>
-                (Verse 2)<br>
-                No dark ages bind, no tyranny shall stand,<br>
-                With honest hearts, we build a promised land.<br>
-                Each voice is heard, each effort finds its place,<br>
-                Progress our guide, with dignity and grace.
-            </p>
-            <p>
-                (Chorus)<br>
-                Ode to the People's Will, our anthem strong and free,<br>
-                For unity and liberty, UCDS for thee!<br>
-                Through struggle, growth, and wisdom's steady hand,<br>
-                We build our future, strong across the land!
-            </p>
-        </div>
+        <h3>The National Flag</h3>
+        <p>The flag of the UCDS features a deep red field, symbolizing the blood shed in the struggle for liberation and the fiery revolutionary spirit of our people. In the upper hoist corner, a golden five-pointed star represents the unity of the five continents and the bright future of communism, while a stylized hammer and sickle below it signify the unbreakable alliance of workers and peasants. The golden color of the star, hammer, and sickle represents prosperity achieved through collective labor.</p>
+        <h3>The National Emblem</h3>
+        <p>Our national emblem depicts a stylized globe encircled by sheaves of wheat, symbolizing global solidarity and abundant production. Above the globe, a radiant golden sun rises, signifying the dawn of a new era. A red star is prominently featured at the top, and a banner at the bottom proclaims our national motto: "All Power to the People, All Land to the Toilers."</p>
+        <h3>The National Anthem</h3>
+        <p>The national anthem, "Hymn of the United Peoples," is a powerful ode to unity, struggle, and the vision of a classless society. Its stirring melody and lyrical call to action inspire solidarity and revolutionary zeal among all citizens.</p>
+        <h3>The National Flower: The Red Carnation</h3>
+        <p>The vibrant red carnation is the national flower of the UCDS, chosen for its historical association with the workers' movement and its striking color, which mirrors the revolutionary red of our flag. It symbolizes courage, love, and comradeship.</p>
     </main>
     <footer>
         <p>&copy; 2024 United Communist Democratic States</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>

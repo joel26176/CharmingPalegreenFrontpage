@@ -3,43 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UCDS History</title>
+    <title>History - UCDS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
-        <h1>History of the United Communist Democratic States</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/history">History</a></li>
-                <li><a href="/about">About UCDS</a></li>
-                <li><a href="/government">Government</a></li>
-                <li><a href="/citizenship">Citizenship</a></li>
-                <li><a href="/symbols">Symbols</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/login">Admin Login</a></li>
-            </ul>
-        </nav>
+        <div class="header-left">
+            <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/history">History</a></li>
+                    <li><a href="/about">About UCDS</a></li>
+                    <li><a href="/government">Government</a></li>
+                    <li><a href="/citizenship">Citizenship</a></li>
+                    <li><a href="/symbols">Symbols</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-right">
+            <h1>United Communist Democratic States</h1>
+            <nav>
+                <ul>
+                    <li><a href="/login">Admin Login</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
-        <h2>Our Origins</h2>
-        <p>The United Communist Democratic States (UCDS) was officially created on <strong>June 14th, 2024</strong>. It was founded by myself, <strong>kingstondino</strong>, along with a group of close friends who shared a vision for a new micronation.</p>
+        <h2>Our Glorious History</h2>
+        <p>The United Communist Democratic States emerged from the ashes of a tumultuous global era, a testament to the enduring spirit of human liberation and the unwavering commitment to collective well-being.</p>
 
-        <h2>Growth and Challenges</h2>
-        <p>As UCDS grew, we expanded our community, inviting dedicated individuals like <strong>Nooby</strong>, <strong>@Senat</strong>, and <strong>@Архангельск</strong> to join our ranks and contribute to our development.</p>
-        <p>However, our early days were not without turmoil. Some initial members, whose ideologies diverged from our communist principles, attempted a revolution and raid. This attempt ultimately failed, and they subsequently left, having betrayed our trust.</p>
+        <h3>The Dawn of Unity (2024-2030)</h3>
+        <p>In the mid-2020s, widespread economic disparity and social unrest reached a breaking point. Visionary thinkers and grassroots organizers, inspired by the historical struggles for justice, began to articulate a new path forward. Secret collectives formed, spreading the ideas of cooperative living, shared resources, and democratic control over the means of production. The initial resistance from entrenched powers was fierce, but the unified voice of the people proved indomitable.</p>
 
-        <h2>The Dark Ages and Rebirth</h2>
-        <p>A challenging period known as the "Dark Ages" ensued when we mistakenly entrusted ownership to a person known as <strong>tizian the scammer</strong>. This turned out to be a regrettable decision as our group became entangled in scamming activities, which went against everything UCDS stood for.</p>
-        <p>But the spirit of UCDS prevailed! We successfully broke free from their influence and the dark ages are officially over. We have emerged stronger and more committed to our original ideals.</p>
+        <h3>The Great Transition (2030-2040)</h3>
+        <p>The decade of transition saw the peaceful (and in some areas, revolutionary) dismantling of old systems. Property was collectivized, vital industries were brought under public ownership, and direct democratic structures began to take root. This period was characterized by immense challenges but also unprecedented solidarity as communities worked together to build the foundations of a new society. International brigades of volunteers aided the transition in various regions, sharing knowledge and resources.</p>
 
-        <h2>Our Leadership</h2>
-        <p>Today, UCDS is led by our esteemed president, <strong>Desert Eagle</strong>, with founder <strong>kingstondino</strong> continuing to guide our path.</p>
+        <h3>Establishment of the UCDS (2041)</h3>
+        <p>On January 1st, 2041, after years of meticulous planning and countless public debates, the United Communist Democratic States was formally declared. A constitution, forged through widespread popular consensus, enshrined the rights of all citizens, the principles of democratic centralism, and the commitment to a classless, egalitarian society. The first Workers' Council was convened, and the People's Presidium was elected, marking the true beginning of our nation.</p>
+
+        <h3>Years of Growth and Solidarity (2041-Present)</h3>
+        <p>Since its founding, the UCDS has focused on internal development and fostering international solidarity. We have made monumental strides in healthcare, education, environmental restoration, and technological innovation, all geared towards improving the quality of life for every citizen. We continue to advocate for global peace and cooperation, extending the hand of friendship to all who strive for a world free from exploitation and injustice.</p>
     </main>
     <footer>
         <p>&copy; 2024 United Communist Democratic States</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
